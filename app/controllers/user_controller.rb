@@ -13,7 +13,13 @@ class UserController < ApplicationController
   end
   
   post '/signup' do
-    puts params
+    if params[:type] == "doctor"
+      type = true
+    else
+      type = false
+    end
+    @user = User.new(:username => params[:username], :password => params[:password], :full_name => params[:fullname], :is_doctor => type)
+    
   end
   
 end
