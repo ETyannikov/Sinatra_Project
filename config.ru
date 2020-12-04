@@ -8,4 +8,5 @@ use Rack::MethodOverride
 use DoctorController
 use PatientController
 use VaccineController
+use UserController
 run ApplicationController
