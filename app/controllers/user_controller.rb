@@ -13,13 +13,27 @@ class UserController < ApplicationController
   end
   
   post '/signup' do
+    #define type of user, true if doctor, false if patient
     if params[:type] == "doctor"
       type = true
     else
       type = false
     end
+    
+    #create User object
     @user = User.new(:username => params[:username], :password => params[:password], :full_name => params[:fullname], :is_doctor => type)
     
-  end
+    #input validation before saving
+    if User.find_by(:username => params[:username]) != nil || params[:username] == "" || params[:password] == ""
+      redirect to '/signup'
+    else
+      @user.save
+      session[:user_id] = @user.id
+    end #if
+    
+    #redirects to doctor index or patient edit depending on type
+    type ? redirect '/doctor/index' : redirect '/patient/edit'
+
+  end #post signup
   
-end
+end #Usercontroller
