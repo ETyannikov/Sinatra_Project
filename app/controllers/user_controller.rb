@@ -8,4 +8,12 @@ class UserController < ApplicationController
     erb :'users/signup'
   end
   
+  post '/login' do
+    
+  end
+  
+  post '/signup' do
+    puts params
+  end
+  
 end
