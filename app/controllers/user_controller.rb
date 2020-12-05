@@ -12,7 +12,11 @@ class UserController < ApplicationController
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      user.is_doctor ? redirect '/doctor/index' : redirect '/patient/index'
+      if user.is_doctor 
+        redirect to '/index' 
+      else 
+        redirect to '/index'
+      end
     else
       redirect to 'login'
     end
@@ -38,7 +42,11 @@ class UserController < ApplicationController
     end #if
     
     #redirects to doctor index or patient edit depending on type
-    type ? redirect '/doctor/index' : redirect '/patient/edit'
+    if type 
+      redirect to '/doctor/index' 
+    else
+      redirect to '/patient/edit'
+    end
 
   end #post signup
   
