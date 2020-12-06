@@ -11,4 +11,7 @@ class DoctorController < ApplicationController
       redirect to '/login'
     end #if
   end #'/doctor/index'
+  
+  
+  
 end #DoctorController

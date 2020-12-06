@@ -31,7 +31,7 @@ class UserController < ApplicationController
     end
     
     #create User object
-    @user = User.new(:username => params[:username], :password => params[:password_digest], :full_name => params[:fullname], :is_doctor => type)
+    @user = User.new(:username => params[:username], :password_digest => params[:password], :full_name => params[:fullname], :is_doctor => type)
     
     #input validation before saving
     if User.find_by(:username => params[:username]) == "" || params[:username_digest] == "" || params[:password] == ""
