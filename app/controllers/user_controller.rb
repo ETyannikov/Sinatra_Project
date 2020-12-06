@@ -10,10 +10,10 @@ class UserController < ApplicationController
   
   post '/login' do
     user = User.find_by(:username => params[:username])
-    if user && user.authenticate(params[:password])
+    if user # && user.authenticate(params[:password_digest])
       session[:user_id] = user.id
       if user.is_doctor 
-        redirect to '/index' 
+        redirect to 'doctor/index' 
       else 
         redirect to '/index'
       end
@@ -31,10 +31,10 @@ class UserController < ApplicationController
     end
     
     #create User object
-    @user = User.new(:username => params[:username], :password => params[:password], :full_name => params[:fullname], :is_doctor => type)
+    @user = User.new(:username => params[:username], :password => params[:password_digest], :full_name => params[:fullname], :is_doctor => type)
     
     #input validation before saving
-    if User.find_by(:username => params[:username]) != nil || params[:username] == "" || params[:password] == ""
+    if User.find_by(:username => params[:username]) == "" || params[:username_digest] == "" || params[:password] == ""
       redirect to '/signup'
     else
       @user.save
