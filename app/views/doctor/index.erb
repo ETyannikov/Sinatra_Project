@@ -2,3 +2,7 @@
 <% @patients.each do |patient|%>
 <h3>Name: <%= patient.user.full_name%></h3><br>
 <% end %>
+<br>
+<form action="/signout">
+    <input type="submit" value="Signout" />
+</form>

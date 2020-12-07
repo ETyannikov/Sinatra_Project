@@ -47,7 +47,15 @@ class UserController < ApplicationController
     else
       redirect to '/patient/edit'
     end
-
   end #post signup
+  
+  get '/signout' do
+    if logged_in?
+      session.destroy
+      redirect to '/login'
+    else
+      redirect to '/'
+    end #if logged_in
+  end #signout
   
 end #Usercontroller

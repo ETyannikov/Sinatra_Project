@@ -1,6 +1,6 @@
 class PatientController < ApplicationController
   
-  get '/patient'
-  erb :'patient/index'
+  get '/patient' do
+    erb :'patient/index'
   end
 end
