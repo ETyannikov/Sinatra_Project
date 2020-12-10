@@ -45,7 +45,7 @@ class UserController < ApplicationController
     if type 
       redirect to '/doctor/index' 
     else
-      redirect to '/patient/edit'
+      redirect to '/patient'
     end
   end #post signup
   

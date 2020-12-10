@@ -1,6 +1,7 @@
 class PatientController < ApplicationController
   
   get '/patient' do
-    erb :'patient/index'
+    current_user
+    erb :'patients/index'
   end
 end
