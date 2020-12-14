@@ -1,12 +1,18 @@
 class UserController < ApplicationController
   
+  
+  
   get '/login' do
     erb :'users/login'
   end
   
+  
+  
   get '/signup' do
     erb :'users/signup'
   end
+  
+  
   
   post '/login' do
     user = User.find_by(:username => params[:username])
@@ -22,6 +28,9 @@ class UserController < ApplicationController
     end
   end
   
+  
+  
+  
   post '/signup' do
     #define type of user, true if doctor, false if patient
     if params[:type] == "doctor"
@@ -29,6 +38,8 @@ class UserController < ApplicationController
     else
       type = false
     end
+    
+    
     
     #create User object
     @user = User.new(:username => params[:username], :password_digest => params[:password], :full_name => params[:fullname], :is_doctor => type)
@@ -48,6 +59,23 @@ class UserController < ApplicationController
       redirect to '/patient'
     end
   end #post signup
+  
+  
+  
+  
+    get '/user/index' do
+    if logged_in?
+      @patients = []
+        Patient.all.each do |patient|
+          if && patient.doctor.id == session[:user_id] then @patients << patient end
+        end #each do
+      erb :'doctor/index'
+    else 
+      redirect to '/login'
+    end #if
+  end #'/doctor/index'
+  
+  
   
   get '/signout' do
     if logged_in?
