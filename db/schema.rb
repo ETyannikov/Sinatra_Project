@@ -20,18 +20,16 @@ ActiveRecord::Schema.define(version: 2020_12_03_234320) do
 
   create_table "patients", force: :cascade do |t|
     t.integer "user_id"
+    t.string "full_name"
     t.integer "age"
     t.string "gender"
-    t.integer "doctor_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "full_name"
     t.string "password_digest"
-    t.boolean "is_doctor"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -40,7 +38,7 @@ ActiveRecord::Schema.define(version: 2020_12_03_234320) do
     t.string "name"
     t.string "disease"
     t.integer "patient_id"
-    t.integer "doctor_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
