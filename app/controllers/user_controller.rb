@@ -67,7 +67,7 @@ class UserController < ApplicationController
     if logged_in?
       @patients = []
         Patient.all.each do |patient|
-          if && patient.doctor.id == session[:user_id] then @patients << patient end
+          if patient.doctor.id == session[:user_id] then @patients << patient end
         end #each do
       erb :'doctor/index'
     else 
