@@ -11,6 +11,7 @@ class VaccineController < ApplicationController
 
 get '/vaccines/new' do
     if logged_in?
+      patients
       erb :'vaccines/create'
     else
       redirect to '/login'
