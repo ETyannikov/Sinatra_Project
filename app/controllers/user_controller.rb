@@ -16,7 +16,8 @@ class UserController < ApplicationController
   
   post '/login' do
     user = User.find_by(:username => params[:username])
-    if user # && user.authenticate(params[:password_digest])
+    binding.pry
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
         redirect to 'doctor/index' 
     else
@@ -30,13 +31,13 @@ class UserController < ApplicationController
   post '/signup' do
     @message=""
     #create User object
-    @user = User.new(:username => params[:username], :password_digest => params[:password], :full_name => params[:fullname])
-    
+    @user = User.new(:username => params[:username], :password_digest => params[:password])
     #input validation before saving
-    if User.find_by(:username => params[:username]) == "" || params[:username] == "" || params[:password] == ""
+    if User.find_by(:username => params[:username]) != "" || params[:username] == "" || params[:password] == ""
       @message = "Invalid information, please try again"
       redirect to '/signup'
     else
+      binding.pry
       @user.save
       session[:user_id] = @user.id
     end #if
