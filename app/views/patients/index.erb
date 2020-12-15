@@ -1,2 +1,6 @@
 <h1>Patient Index</h1>
-<p>Welome <%= @current_user.username%></p>
+<p>Welome </p>
+<br>
+<% @patients.each do |patient|%>
+<p>Patient:<%= patient.fullname%></p>
+<%end%>
