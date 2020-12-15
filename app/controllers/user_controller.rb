@@ -32,17 +32,9 @@ class UserController < ApplicationController
   
   
   post '/signup' do
-    #define type of user, true if doctor, false if patient
-    if params[:type] == "doctor"
-      type = true
-    else
-      type = false
-    end
-    
-    
     
     #create User object
-    @user = User.new(:username => params[:username], :password_digest => params[:password], :full_name => params[:fullname], :is_doctor => type)
+    @user = User.new(:username => params[:username], :password_digest => params[:password], :full_name => params[:fullname])
     
     #input validation before saving
     if User.find_by(:username => params[:username]) == "" || params[:username_digest] == "" || params[:password] == ""

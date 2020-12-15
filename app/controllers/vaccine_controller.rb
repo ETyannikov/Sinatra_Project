@@ -3,7 +3,7 @@ class VaccineController < ApplicationController
   get '/vaccines' do
     if logged_in?
       @vaccines = Vaccine.all
-      erb :'vaccines/vaccines'
+      erb :'vaccines/index'
     else
       redirect to '/login'
     end
@@ -11,7 +11,7 @@ class VaccineController < ApplicationController
 
 get '/vaccines/new' do
     if logged_in?
-      erb :'vaccines/create_vaccine'
+      erb :'vaccines/create'
     else
       redirect to '/login'
     end
@@ -37,7 +37,7 @@ get '/vaccines/new' do
   get '/vaccines/:id' do
     if logged_in?
       @vaccine = Vaccine.find_by_id(params[:id])
-      erb :'vaccines/show_vaccine'
+      erb :'vaccines/show'
     else
       redirect to '/login'
     end
@@ -47,7 +47,7 @@ get '/vaccines/new' do
     if logged_in?
       @vaccine = Vaccine.find_by_id(params[:id])
       if @vaccine && @vaccine.user == current_user
-        erb :'vaccines/edit_vaccine'
+        erb :'vaccines/edit'
       else
         redirect to '/vaccines'
       end
