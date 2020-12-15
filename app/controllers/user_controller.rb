@@ -18,7 +18,7 @@ class UserController < ApplicationController
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-        redirect to 'doctor/index' 
+        redirect to 'vaccines' 
     else
       redirect to 'login'
     end
