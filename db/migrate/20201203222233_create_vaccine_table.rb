@@ -3,6 +3,7 @@ class CreateVaccineTable < ActiveRecord::Migration[6.0]
     create_table :vaccines do |t|
       t.string :name
       t.string :disease
+      t.string :time
       t.integer :patient_id
       t.integer :user_id
       
