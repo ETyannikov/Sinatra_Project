@@ -32,24 +32,18 @@ class UserController < ApplicationController
   
   
   post '/signup' do
-    
+    @message=""
     #create User object
     @user = User.new(:username => params[:username], :password_digest => params[:password], :full_name => params[:fullname])
     
     #input validation before saving
-    if User.find_by(:username => params[:username]) == "" || params[:username_digest] == "" || params[:password] == ""
+    if User.find_by(:username => params[:username]) == "" || params[:username] == "" || params[:password] == ""
+      @message = "Invalid information, please try again"
       redirect to '/signup'
     else
       @user.save
       session[:user_id] = @user.id
     end #if
-    
-    #redirects to doctor index or patient edit depending on type
-    if type 
-      redirect to '/doctor/index' 
-    else
-      redirect to '/patient'
-    end
   end #post signup
   
   
