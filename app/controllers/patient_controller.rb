@@ -27,7 +27,7 @@ class PatientController < ApplicationController
       if params[:content] == ""
         redirect to "/patients/new"
       else
-        @patient = current_user.patient.build(full_name: params[:full_name], age: params[:age], gender: params[:gender])
+        @patient = current_user.patient.build(full_name: params[:full_name], dob: params[:dob], gender: params[:gender])
         if @patient.save
           redirect to "/patients/#{@patient.id}"
         else
@@ -69,7 +69,7 @@ class PatientController < ApplicationController
       else
         @patient = Patient.find_by_id(params[:id])
         if @patient && @patient.user_id == current_user.id
-          if @patient.update(full_name: params[:full_name], age: params[:age], gender: params[:gender])
+          if @patient.update(full_name: params[:full_name], dob: params[:dob], gender: params[:gender])
             redirect to "/patients/#{@patient.id}"
           else
             redirect to "/patients/#{@patient.id}/edit"

@@ -2,5 +2,5 @@
 <p>Welome </p>
 <br>
 <% @patients.each do |patient|%>
-<p>Patient:<%= patient.full_name%></p>
+<a href="/patients/<%=patient.id%>">Patient:<%= patient.full_name%></a>
 <%end%>

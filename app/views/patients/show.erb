@@ -1,8 +1,8 @@
-<h1><%= @patient.name%></h1>
+<h1><%=@patient.full_name%></h1>
 <br>
-<p><%=@patient.disease%></p>
+<p><%=@patient.dob%></p>
 <br>
-<p><%=@patient.time%></p>
+<p><%=@patient.gender%></p>
 
 <a href="/patients/<%=@patient.id%>/edit">Edit or delete Patient </a>
 <br>
