@@ -6,11 +6,7 @@
   <input type="text" name="DOB" ></input><br>
   <lable>Gender:</lable>
   <input type="text" name="gender" ></input><br>
-  <% @patients.each do |patient|%>
-    <p>Patient:<%= patient.full_name%></p>
-    <input type="radio" name="patient" id=<%patient.id %>></input>
-    <br>
-  <%end%>
+
   <input type="submit"></input>
 </form>
 <br>
