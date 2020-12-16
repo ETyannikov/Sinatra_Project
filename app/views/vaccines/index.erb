@@ -2,5 +2,6 @@
 <p>Welome </p>
 <br>
 <% @vaccines.each do |vaccine|%>
-<p>Vaccine:<%= vaccine.name%></p>
+<a href="/vaccines/<%=vaccine.id%>">Vaccine:<%= vaccine.name%></a>
+<br>
 <%end%>
