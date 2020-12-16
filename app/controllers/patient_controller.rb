@@ -27,9 +27,9 @@ class PatientController < ApplicationController
       if params[:content] == ""
         redirect to "/patients/new"
       else
-        @vaccine = current_user.vaccine.build(name: params[:name], disease: params[:disease], time: params[:time])
-        if @vaccine.save
-          redirect to "/patients/#{@vaccine.id}"
+        @patient = current_user.patient.build(full_name: params[:full_name], age: params[:age], gender: params[:gender])
+        if @patient.save
+          redirect to "/patients/#{@patient.id}"
         else
           redirect to "/patients/new"
         end
@@ -41,7 +41,7 @@ class PatientController < ApplicationController
 
   get '/patients/:id' do
     if logged_in?
-      @vaccine = Patient.find_by_id(params[:id])
+      @patient = Patient.find_by_id(params[:id])
       erb :'patients/show'
     else
       redirect to '/login'
@@ -51,8 +51,8 @@ class PatientController < ApplicationController
   get '/patients/:id/edit' do
     if logged_in?
       patients
-      @vaccine = Patient.find_by_id(params[:id])
-      if @vaccine && @vaccine.user_id == current_user.id
+      @patient = Patient.find_by_id(params[:id])
+      if @patient && @patient.user_id == current_user.id
         erb :'patients/edit'
       else
         redirect to '/patients'
@@ -67,12 +67,12 @@ class PatientController < ApplicationController
       if params[:content] == ""
         redirect to "/patients/#{params[:id]}/edit"
       else
-        @vaccine = Patient.find_by_id(params[:id])
-        if @vaccine && @vaccine.user_id == current_user.id
-          if @vaccine.update(name: params[:name], disease: params[:disease], time: params[:time])
-            redirect to "/patients/#{@vaccine.id}"
+        @patient = Patient.find_by_id(params[:id])
+        if @patient && @patient.user_id == current_user.id
+          if @patient.update(full_name: params[:full_name], age: params[:age], gender: params[:gender])
+            redirect to "/patients/#{@patient.id}"
           else
-            redirect to "/patients/#{@vaccine.id}/edit"
+            redirect to "/patients/#{@patient.id}/edit"
           end
         else
           redirect to '/patients'
@@ -85,9 +85,9 @@ class PatientController < ApplicationController
 
   delete '/patients/:id/delete' do
     if logged_in?
-      @vaccine = Patient.find_by_id(params[:id])
-      if @vaccine && @vaccine.user == current_user
-        @vaccine.delete
+      @patient = Patient.find_by_id(params[:id])
+      if @patient && @patient.user_id == current_user.id
+        @patient.delete
       end
       redirect to '/patients'
     else

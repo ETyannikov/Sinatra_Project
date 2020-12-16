@@ -82,7 +82,7 @@ get '/vaccines/new' do
   delete '/vaccines/:id/delete' do
     if logged_in?
       @vaccine = Vaccine.find_by_id(params[:id])
-      if @vaccine && @vaccine.user == current_user
+      if @vaccine && @vaccine.user_id == current_user.id
         @vaccine.delete
       end
       redirect to '/vaccines'
