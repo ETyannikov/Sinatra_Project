@@ -1,7 +1,11 @@
 <h1>Vaccine Index</h1>
 <p>Welome </p>
 <br>
-<% @vaccines.each do |vaccine|%>
+<%if @vaccines %>
+<%@vaccines.each do |vaccine|%>
 <a href="/vaccines/<%=vaccine.id%>">Vaccine:<%= vaccine.name%></a>
 <br>
+<%end%>
+<%else%>
+<p>No vaccines</p>
 <%end%>
