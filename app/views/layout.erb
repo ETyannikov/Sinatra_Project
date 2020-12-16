@@ -34,13 +34,26 @@ body {
 .topnav a.active {
   background-color: #4CAF50;
   color: white;
+  
+ div.b {
+  text-align: right;
+}
 }
 </style>
   </head>
   <body>
     <div class="topnav">
-  <a class="active" href="/patients">Patients</a>
+  <a href="/patients">Patients</a>
   <a href="/vaccines">Vaccines</a>
+  <b href="/signout">Sign Out</b>
+</div>
+
+<div class="b">
+<%if @current_user%>
+<b ><%=@current_user.username%></b>
+<%else%>
+<b>Not logged in</b>
+<%end%>
 </div>
     
   

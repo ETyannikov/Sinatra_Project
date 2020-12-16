@@ -2,6 +2,7 @@ class VaccineController < ApplicationController
   
   get '/vaccines' do
     if logged_in?
+      info
       @vaccines = Vaccine.all
       erb :'vaccines/index'
     else
@@ -11,7 +12,7 @@ class VaccineController < ApplicationController
 
 get '/vaccines/new' do
     if logged_in?
-      patients
+      info
       erb :'vaccines/create'
     else
       redirect to '/login'
@@ -20,7 +21,7 @@ get '/vaccines/new' do
 
   post '/vaccines' do
     if logged_in?
-      if params[:content] == ""
+      if params[:name] == ""
         redirect to "/vaccines/new"
       else
         @vaccine = current_user.vaccine.build(name: params[:name], disease: params[:disease], time: params[:time])
@@ -37,6 +38,7 @@ get '/vaccines/new' do
 
   get '/vaccines/:id' do
     if logged_in?
+      info
       @vaccine = Vaccine.find_by_id(params[:id])
       erb :'vaccines/show'
     else
@@ -46,7 +48,7 @@ get '/vaccines/new' do
 
   get '/vaccines/:id/edit' do
     if logged_in?
-      patients
+      info
       @vaccine = Vaccine.find_by_id(params[:id])
       if @vaccine && @vaccine.user_id == current_user.id
         erb :'vaccines/edit'
@@ -60,7 +62,7 @@ get '/vaccines/new' do
 
   patch '/vaccines/:id' do
     if logged_in?
-      if params[:content] == ""
+      if params[:name] == ""
         redirect to "/vaccines/#{params[:id]}/edit"
       else
         @vaccine = Vaccine.find_by_id(params[:id])

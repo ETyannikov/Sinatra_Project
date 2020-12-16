@@ -2,11 +2,7 @@ class PatientController < ApplicationController
   
     get '/patients' do
     #if logged_in?
-      current_user
-      @patients = []
-        Patient.all.each do |patient|
-          @patients << patient
-        end #each do
+      info
       erb :'patients/index'
     #else 
       #redirect to '/login'
@@ -15,7 +11,8 @@ class PatientController < ApplicationController
   
   get '/patients/new' do
     if logged_in?
-      patients
+      
+      info
       erb :'patients/create'
     else
       redirect to '/login'
@@ -24,7 +21,8 @@ class PatientController < ApplicationController
 
   post '/patients' do
     if logged_in?
-      if params[:content] == ""
+      info
+      if params[:full_name] == ""
         redirect to "/patients/new"
       else
         @patient = current_user.patient.build(full_name: params[:full_name], dob: params[:dob], gender: params[:gender])
@@ -41,6 +39,7 @@ class PatientController < ApplicationController
 
   get '/patients/:id' do
     if logged_in?
+      info
       @patient = Patient.find_by_id(params[:id])
       erb :'patients/show'
     else
@@ -50,7 +49,7 @@ class PatientController < ApplicationController
 
   get '/patients/:id/edit' do
     if logged_in?
-      patients
+      info
       @patient = Patient.find_by_id(params[:id])
       if @patient && @patient.user_id == current_user.id
         erb :'patients/edit'
@@ -64,7 +63,8 @@ class PatientController < ApplicationController
 
   patch '/patients/:id' do
     if logged_in?
-      if params[:content] == ""
+      info
+      if params[:full_name] == ""
         redirect to "/patients/#{params[:id]}/edit"
       else
         @patient = Patient.find_by_id(params[:id])
@@ -85,6 +85,7 @@ class PatientController < ApplicationController
 
   delete '/patients/:id/delete' do
     if logged_in?
+      info
       @patient = Patient.find_by_id(params[:id])
       if @patient && @patient.user_id == current_user.id
         @patient.delete

@@ -23,6 +23,12 @@ class ApplicationController < Sinatra::Base
   def logged_in?
       !!current_user
     end
+    
+  def info
+    current_user
+    patients
+    vaccines
+  end
 
     def current_user
       @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
@@ -33,7 +39,14 @@ class ApplicationController < Sinatra::Base
         Patient.all.each do |patient|
           @patients << patient
         end #each do
-    end
-  end
+    end #patient
+    
+        def vaccines
+      @vaccines = []
+        Vaccine.all.each do |vaccine|
+          @vaccines << vaccine
+        end #each do
+    end #vaccine
+  end #helpers
 
 end
