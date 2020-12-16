@@ -23,7 +23,7 @@ get '/vaccines/new' do
       if params[:content] == ""
         redirect to "/vaccines/new"
       else
-        @vaccine = current_user.vaccines.build(content: params[:content])
+        @vaccine = current_user.vaccine.build(name: params[:name], disease: params[:disease], time: params[:time])
         if @vaccine.save
           redirect to "/vaccines/#{@vaccine.id}"
         else
@@ -64,8 +64,8 @@ get '/vaccines/new' do
         redirect to "/vaccines/#{params[:id]}/edit"
       else
         @vaccine = Vaccine.find_by_id(params[:id])
-        if @vaccine && @vaccine.user == current_user
-          if @vaccine.update(content: params[:content])
+        if @vaccine && @vaccine.user_id == current_user.id
+          if @vaccine.update(name: params[:name], disease: params[:disease], time: params[:time])
             redirect to "/vaccines/#{@vaccine.id}"
           else
             redirect to "/vaccines/#{@vaccine.id}/edit"
