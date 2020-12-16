@@ -46,8 +46,9 @@ get '/vaccines/new' do
 
   get '/vaccines/:id/edit' do
     if logged_in?
+      patients
       @vaccine = Vaccine.find_by_id(params[:id])
-      if @vaccine && @vaccine.user == current_user
+      if @vaccine && @vaccine.user_id == current_user.id
         erb :'vaccines/edit'
       else
         redirect to '/vaccines'

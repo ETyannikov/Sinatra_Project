@@ -1,5 +1,5 @@
 <h1>Edit Vaccine</h1>
-<form action="/vaccines/edit/<%=@vaccine.id%>" method="post">
+<form action="/vaccines/<%=@vaccine.id%>" method="post">
   <input id="hidden" type="hidden" name="_method" value="PATCH"> #Mysterious hidden input for PATCH
   <lable>Name:</lable>
   <input type="text" name="name" value=<%=@vaccine.name%>></input><br>
