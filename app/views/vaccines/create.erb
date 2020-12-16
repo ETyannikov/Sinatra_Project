@@ -13,3 +13,8 @@
   <%end%>
   <input type="submit"></input>
 </form>
+<br>
+<form method="post" action="/vaccines/<%=@vaccine.id%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete vaccine">
+</form>
