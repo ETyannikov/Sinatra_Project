@@ -7,10 +7,6 @@
   <input type="text" name="disease" value=<%=@vaccine.disease%>></input><br>
   <lable>Time:</lable>
   <input type="text" name="time" value=<%=@vaccine.time%>></input><br>
-  <% @patients.each do |patient|%>
-    <p>Patient:<%= patient.full_name%></p>
-    <input type="radio" name="patient" id=<%patient.id %>></input>
-    <br>
-  <%end%>
+  
   <input type="submit"></input>
 </form>
