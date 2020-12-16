@@ -1,0 +1,13 @@
+<h1>Edit Patient</h1>
+<form action="/patients/<%=@patient.id%>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="PATCH"> 
+  <lable>Name:</lable>
+  <input type="text" name="name" value=<%=@patient.name%>></input><br>
+  <lable>Disease:</lable>
+  <input type="text" name="disease" value=<%=@patient.disease%>></input><br>
+  <lable>Time:</lable>
+  <input type="text" name="time" value=<%=@patient.time%>></input><br>
+  <input type="submit"></input>
+</form>
+<br>
+<a href="/vaccines">Return to index</a>
