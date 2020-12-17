@@ -1,12 +1,12 @@
 class PatientController < ApplicationController
   
     get '/patients' do
-    #if logged_in?
+    if logged_in?
       info
       erb :'patients/index'
-    #else 
+    else 
       #redirect to '/login'
-    #end #if
+    end #if
   end #'/doctor/index'
   
   get '/patients/new' do

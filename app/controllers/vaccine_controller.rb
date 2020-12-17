@@ -40,6 +40,7 @@ get '/vaccines/new' do
     if logged_in?
       info
       @vaccine = Vaccine.find_by_id(params[:id])
+      @user = User.find_by_id(@vaccine.user_id)
       erb :'vaccines/show'
     else
       redirect to '/login'

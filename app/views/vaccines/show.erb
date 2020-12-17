@@ -1,8 +1,10 @@
-<h1><%= @vaccine.name%></h1>
+<h1>Name: <%= @vaccine.name%></h1>
 <br>
-<p><%=@vaccine.disease%></p>
+<p>Disease: <%=@vaccine.disease%></p>
 <br>
-<p><%=@vaccine.time%></p>
+<p>Time: <%=@vaccine.time%></p>
+<br>
+<p>Owned by: <%=@user.username%></p>
 
 <a href="/vaccines/<%=@vaccine.id%>/edit">Edit or delete Vaccine </a>
 <br>
