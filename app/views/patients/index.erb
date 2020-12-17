@@ -1,5 +1,7 @@
 <h1>Patient Index</h1>
 <br>
+<a href="/patients/new">Create new patient file</a>
+<br>
 <% @patients.each do |patient|%>
 <a href="/patients/<%=patient.id%>">Patient:<%= patient.full_name%></a>
 <br>
