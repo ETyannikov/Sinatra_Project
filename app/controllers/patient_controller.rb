@@ -5,7 +5,7 @@ class PatientController < ApplicationController
       info
       erb :'patients/index'
     else 
-      #redirect to '/login'
+      redirect to '/login'
     end #if
   end #'/doctor/index'
   
